@@ -18,7 +18,7 @@ int main()
 ```
 ```C
 #include <stdio.h>
-char line[2000];
+char line[2000]; ///字元也可宣告為陣列
 int main()
 {
     scanf("%s",line);  ///字串用%s,讀入不用&
@@ -53,7 +53,7 @@ int main()
 ## 鏡像字
 ```C
 #include <stdio.h>
-char table1[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"; ///反轉前
+char table1[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"; ///反轉前(字元的陣列內容用""包起來,int數字是用{})
 char table2[]="A   3  HIL JM O   2TUVWXY51SE Z  8 "; ///反轉後
 char mirror(char c) ///創一個函式
 {
@@ -124,11 +124,58 @@ char line[2000];
 int main()
 {
 	int t=1;
-	while(gets(line))
+	while(gets(line)) ///讀入一整行(scanf()遇到空格會停,gets()不會)
 	{
 		if(t>1) printf("\n");
 		printf("第%d筆資料\n",t);
 		t++;
 	}
+}
+```
+# 第四週
+## 算出現頻率
+```C
+#include <stdio.h>
+char line[2000];
+int main()
+{
+	int t=1;
+	while(gets(line))
+	{
+		if(t>1) printf("\n"); ///第一行前不跳行
+		int max=0; ///用來算最大頻率
+		int ans[256]={}; ///用來記錄不同字元的頻率
+		for(int i=0;line[i]!=0;i++)
+		{
+			char c=line[i]; /// 1
+			ans[c]++; /// 2   1,2可合併成 ans[ line[i] ]++; (ans[字元]++會轉換成ans[ASCII碼]++,所以可計算頻率)
+			if(ans[c]>max) max=ans[c]; ///更新最大頻率
+		}
+		for(int f=1;f<=max;f++) ///在最大頻率內找,可以減少計算時間
+		{
+			for(int c=128;c>=32;c--)
+			{
+				if(ans[c]==f) printf("%d %d\n",c,ans[c]);
+			}
+		}
+		t++;
+	}
+
+}
+```
+## 資料結構
+```C
+#include <stdio.h>
+struct DATA ///資料結構(盒子)的內容
+{
+    char c;
+    int ans;
+}; ///要加分號;
+struct DATA list1; ///有1個資料結構(盒子)叫list1
+struct DATA lists[100]; ///有1個資料結構(盒子)陣列
+int main()
+{
+    list1.c='A'; ///把list1這個資料結構的char c='A'
+    list1.ans=1; ///把list1這個資料結構的int ans=1
 }
 ```
