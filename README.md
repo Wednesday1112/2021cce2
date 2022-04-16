@@ -404,4 +404,56 @@ int main()
 }
 ```
 # 第八週
+## 檔案(創建)
+```C
+#include <stdio.h>
+#include <string.h>
+char names[3][20];
+int grades[3];
+int main()
+{
+    char name[20];
+    int grade;
+    for(int i=0;i<3;i++)
+    {
+        scanf("%s",name);
+        scanf("%d",&grade);
+        strcpy(names[i],name); ///複製name到names[i]裡面
+        grades[i]=grade;
+    }
+    FILE * fout=fopen("file.txt","w+");///w+代表創建檔案
+    for(int i=0;i<3;i++)
+    {
+        printf("%s %d\n",names[i],grades[i]);
+       fprintf(fout,"%s %d\n",names[i],grades[i]);
+    }
+}
+```
+## 檔案(讀入)
+```C
+#include <stdio.h>
+#include <string.h>
+char names[3][20];
+int grades[3];
+int main()
+{
+    FILE * fin=fopen("file.txt","r+");///r+讀入資料
+    char name[20];
+    int grade;
+    for(int i=0;i<3;i++)
+    {
+        fscanf(fin,"%s",name);
+        fscanf(fin,"%d",&grade);
+        strcpy(names[i],name); ///複製name到names[i]裡面
+        grades[i]=grade;
+    }
+    ///FILE * fout=fopen("file.txt","w+");
+    for(int i=0;i<3;i++)
+    {
+        printf("%s %d\n",names[i],grades[i]);
+        ///fprintf(fout,"%s %d\n",names[i],grades[i]);
+    }
+}
+```
+# 第九週
 ## 
