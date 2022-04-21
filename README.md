@@ -456,4 +456,105 @@ int main()
 }
 ```
 # 第九週
+## (原來)泡泡排序法
+```C
+#include <stdio.h>
+int grade[10]={9,8,1,2,3, 7,6,5,4,0};
+int main()
+{
+    int N=10;
+
+    for(int k=0;k<N;k++)
+    {
+        for(int i=0;i<N-1;i++)
+        {
+            if(grade[i]<grade[i+1])
+            {
+                int temp=grade[i];
+                grade[i]=grade[i+1];
+                grade[i+1]=temp;
+            }
+        }
+        for(int i=0;i<N;i++) printf("%d ",grade[i]);
+        printf("\n");
+    }
+}
+```
+## (減少迴圈數)泡泡排序法
+```C
+#include <stdio.h>
+int grade[10]={9,8,1,2,3, 7,6,5,4,0};
+int main()
+{
+    int N=10;
+
+    for(int k=0;k<N;k++) ///不知道要跑幾次就用while(已經有change可以判斷結束迴圈)
+    {
+        int change=0; ///用來判斷排好了沒
+        for(int i=0;i<N-1;i++)
+        {
+            if(grade[i]<grade[i+1])
+            {
+                int temp=grade[i];
+                grade[i]=grade[i+1];
+                grade[i+1]=temp;
+                change++; ///還沒排好
+            }
+        }
+        if(change==0) break; ///排好了就不再跑了
+        for(int i=0;i<N;i++) printf("%d ",grade[i]);
+        printf("\n");
+    }
+}
+```
+## 字串交換strcpy()
+```C
+#include <string.h> ///strcpy()
+char name[100][80]; ///100行資料,每行80字母
+int grade[100]; ///100個整數
+int main()
+{
+	int N;
+	scanf("%d",&N);
+	for(int i=0;i<N;i++)
+	{
+		scanf("%s %d",name[i],&grade[i]); ///%s不用&,%d要&
+	}
+	for(int k=0;k<N-1;k++)
+	{
+		for(int i=0;i<N-1;i++)
+		{
+			if(grade[i]<grade[i+1])
+			{
+				int temp=grade[i];
+				grade[i]=grade[i+1];
+				grade[i+1]=temp;
+				char tempName[80]; ///字串交換用strcpy()
+				strcpy(tempName,name[i]); ///右邊copy到左邊( tempName = name[i] )
+				strcpy(name[i],name[i+1]);
+				strcpy(name[i+1],tempName);
+			}
+		}
+	}
+	for(int i=0;i<N;i++)
+	{
+		printf("%s %d\n",name[i],grade[i]);
+	}
+}
+```
+## 字串的strcmp()
+```C
+#include <stdio.h>
+#include <string.h>
+char strA[]="ABC";
+char strB[]="ABCD";
+int main()
+{
+    int c=strcmp("B","C"); ///可以看成 B - C
+    printf("B - C 得到 %d\n",c);
+    c=strcmp(strA,strB);
+    printf("%s %s 得到 %d\n",strA,strB,c);
+}
+```
+# 第十週
 ## 
