@@ -635,4 +635,96 @@ int main()
 }
 ```
 # 第十二週
+## C++的STL
+```C
+#include <stdio.h> ///C
+#include <vector> ///C++
+#include <algorithm> ///C++
+class Student
+{
+public:
+	char name[30];
+	int grade;
+};
+bool compare(Student a,Student b) ///建立compare函式
+{
+	return (a.grade>b.grade);
+}
+int main()
+{
+	int N;
+	scanf("%d",&N);
+	std::vector<Student> stu(N);
+	for(int i=0;i<N;i++)
+	{
+		scanf("%s %d",stu[i].name,&stu[i].grade);
+	}
+	std::stable_sort(stu.begin(),stu.end(),compare); ///排序,從stu開始,stu結束,用compare函式
+	for(int i=0;i<N;i++)
+	{
+		printf("%s %d\n",stu[i].name,stu[i].grade);
+	}
+}
+```
+## in,out,stream( >> , << )
+```C
+#include <iostream>
+int main()
+{
+	int N;
+	std::cin>>N;
+	std::cout<<"I got N:"<<N;
+	   ///printf("I got N:");
+	   ///         printf("%d",N);
+	   ///printf("I got N:%d", N);
+	return 0;
+}
+```
+## using namespace 和 endl
+```C
+#include <iostream>
+using namespace std; ///之後都能省略std::
+class Student
+{
+public:
+	char name[30];
+	int grade;
+};
+Student stu[100];
+int main()
+{
+	int N;
+	cin>>N; ///std裡面的cin
+	for(int i=0;i<N;i++)
+	{
+		cin>>stu[i].name;
+		cin>>stu[i].grade;
+	}
+	for(int i=0;i<N;i++)
+	{
+		cout<<stu[i].name<< " ";
+		cout<<stu[i].grade<<endl; ///end line
+	}
+	return 0;
+}
+## vector
+```C
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    vector<int> v; ///有一串東西,每格是int的形式(有點像陣列)
+                   ///但沒說有幾格,預設為0格
+    v.push_back(10); ///在v串裡加入10,加大一格
+    v.push_back(20); ///在v串裡加入20,再加大一格
+    v.push_back(30); ///在v串裡加入30,再加大一格
+    for(int i=0;i<3;i++)
+    {
+        cout<<v[i];
+        cout<<endl;
+    }
+}
+```
+# 第十三週
 ## 
